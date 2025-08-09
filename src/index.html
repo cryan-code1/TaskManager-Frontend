@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>📋 Tasks API</h2>
+            <nav>
+                <button onclick="showSection('allTasks')">Todas as Tarefas</button>
+                <button onclick="showSection('newTask')">Nova Tarefa</button>
+                <button onclick="showSection('byId')">Buscar por ID</button>
+                <button onclick="showSection('byStatus')">Buscar por Status</button>
+                <button onclick="showSection('stats')">Estatísticas</button>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main">
+
+            <!-- Todas as tarefas -->
+            <section id="allTasks" class="section active">
+                <h2>📋 Todas as Tarefas</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Status</th>
+                            <th>Criada</th>
+                            <th>Concluída</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tasksTableBody"></tbody>
+                </table>
+            </section>
+
+            <!-- Nova tarefa -->
+            <section id="newTask" class="section">
+                <h2>🆕 Nova Tarefa</h2>
+                <form id="formAddTask">
+                    <input type="text" id="title" placeholder="Título" required>
+                    <textarea id="description" placeholder="Descrição" required></textarea>
+                    <select id="status" required>
+                        <option value="0">Pending</option>
+                        <option value="1">Completed</option>
+                    </select>
+                    <button type="submit">Adicionar</button>
+                </form>
+            </section>
+
+            <!-- Buscar por ID -->
+            <section id="byId" class="section">
+                <h2>🔍 Buscar por ID</h2>
+                <input type="number" id="searchId" placeholder="Digite o ID">
+                <button onclick="getTaskById()">Buscar</button>
+                <pre id="taskByIdResult"></pre>
+            </section>
+
+            <!-- Buscar por Status -->
+            <section id="byStatus" class="section">
+                <h2>📌 Buscar por Status</h2>
+                <select id="searchStatus">
+                    <option value="0">Pending</option>
+                    <option value="1">Completed</option>
+                </select>
+                <button onclick="getTasksByStatus()">Buscar</button>
+                <pre id="tasksByStatusResult"></pre>
+            </section>
+
+            <!-- Estatísticas -->
+            <section id="stats" class="section">
+                <h2>📊 Estatísticas</h2>
+                <button onclick="getStats()">Atualizar</button>
+                <pre id="statsResult"></pre>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
